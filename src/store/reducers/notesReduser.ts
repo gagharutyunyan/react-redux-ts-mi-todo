@@ -1,9 +1,11 @@
-import { createAction, createReducer } from '@reduxjs/toolkit';
+import { createReducer } from '@reduxjs/toolkit';
 import { uid } from 'uid';
 
 import { useCheckNote } from '../../hooks/useCheckNote';
 import { useDeleteNote } from '../../hooks/useDeleteNote';
 import { Inotes, IinitialState } from '../../types/types';
+
+import { CHECK_NOTE, DELETE_NOTE, ADD_NOTE } from '../actions/notesAction';
 
 const initialState: IinitialState = {
   notes: [
@@ -50,10 +52,6 @@ const initialState: IinitialState = {
   toogleDeleteModal: false,
   toogleAddModal: false,
 };
-
-const CHECK_NOTE = createAction<string, 'CHECK_NOTE'>('CHECK_NOTE');
-const DELETE_NOTE = createAction<string, 'DELETE_NOTE'>('DELETE_NOTE');
-const ADD_NOTE = createAction<string, 'ADD_NOTE'>('ADD_NOTE');
 
 export const notesReduser = createReducer(initialState, {
   [CHECK_NOTE.type]: (state, { payload }: { payload: string }) => {

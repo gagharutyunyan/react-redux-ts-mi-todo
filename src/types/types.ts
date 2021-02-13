@@ -26,7 +26,7 @@ export interface IinitialState {
 }
 
 export interface IModalAskingForm {
-  deleteNote: (answer: string, id: string) => void;
+  deleteNote: (isDelete: boolean, id: string) => void;
   id: string;
 }
 

@@ -9,6 +9,7 @@ import styled from 'styled-components';
 import { useStyles } from '../../hooks/useStyles';
 import { TisChecked, IMapOfChildNotes } from '../../types/types';
 import { ModalAskingForm } from './ModalAskingForm';
+import { CHECK_NOTE, DELETE_NOTE } from '../../store/actions/notesAction';
 
 const Note = styled.ul`
   position: relative;
@@ -35,11 +36,13 @@ export const MapOfChildNotes: FC<IMapOfChildNotes> = ({
   const [toogleModal, setToogleModal] = useState(false);
 
   const checkNote = (id: string) => {
-    dispatch({ type: 'CHECK_NOTE', payload: id });
+    dispatch(CHECK_NOTE(id));
   };
 
-  const deleteNote = (answer: string, id: string) => {
-    if (answer === 'yes') dispatch({ type: 'DELETE_NOTE', payload: id });
+  const deleteNote = (isDelete: boolean, id: string) => {
+    if (isDelete) {
+      dispatch(DELETE_NOTE(id));
+    }
     setToogleModal(false);
   };
 
