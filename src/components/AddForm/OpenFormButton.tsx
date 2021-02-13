@@ -3,32 +3,25 @@ import Button from '@material-ui/core/Button';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 
 import { createStyles, makeStyles } from '@material-ui/core/styles';
-import { useDispatch } from 'react-redux';
+import { IOpenFormButton } from '../../types/types';
 
-export const useStyles = makeStyles(() =>
+const useStyles = makeStyles(() =>
   createStyles({
     root: {
-      margin: 18,
+      marginTop: 20,
+      marginLeft: 10,
+      minWidth: 220,
     },
   })
 );
 
-export const AddButton: FC = () => {
+export const OpenFormButton: FC<IOpenFormButton> = ({ setToogleModal }) => {
   const classes = useStyles();
-  const dispatch = useDispatch();
-  const obj = {
-    text: 'hey10',
-    id: 'dasdsa',
-    checked: false,
-    childs: [],
-  };
-  const push = () => {
-    dispatch({ type: 'ADD_NOTE', payload: obj });
-  };
+
   return (
     <Button
       className={classes.root}
-      onClick={() => push()}
+      onClick={() => setToogleModal(true)}
       variant="contained"
       color="primary"
       startIcon={<AddCircleIcon />}

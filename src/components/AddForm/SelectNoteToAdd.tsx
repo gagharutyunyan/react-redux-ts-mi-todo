@@ -7,7 +7,6 @@ import styled from 'styled-components';
 import { useStyles } from '../../hooks/useStyles';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { useNormaliseNoteObject } from '../../hooks/useNormaliseNoteObject';
-import { AddButton } from './AddButton';
 
 import { IMapOfChildNotes } from '../../types/types';
 const Option = styled.option`
@@ -36,7 +35,6 @@ export const SelectNoteToAdd = () => {
           );
         })}
       </Select>
-      <AddButton />
     </FormControl>
   );
 };

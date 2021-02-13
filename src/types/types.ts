@@ -29,3 +29,7 @@ export interface IModalAskingForm {
   deleteNote: (answer: string, id: string) => void;
   id: string;
 }
+
+export interface IOpenFormButton {
+  setToogleModal: (param: boolean) => void;
+}

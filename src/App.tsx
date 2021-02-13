@@ -1,21 +1,22 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { Container } from '@material-ui/core';
 import { useStyles } from './hooks/useStyles';
 
 import { AddingElementModalForm } from './components/AddForm/AddingElementModalForm';
-import { AddButton } from './components/AddForm/AddButton';
+import { OpenFormButton } from './components/AddForm/OpenFormButton';
 import { ListOfNotes } from './components/Notes/ListOfNotes';
 
-const App: FC = () => {
+export const App: FC = () => {
   const classes = useStyles();
+  const [toogleModal, setToogleModal] = useState<boolean>(false);
 
   return (
     <Container className={classes.container} maxWidth="xs">
       <ListOfNotes />
-      <AddButton />
-      <AddingElementModalForm />
+      <OpenFormButton setToogleModal={setToogleModal} />
+      {toogleModal ? (
+        <AddingElementModalForm setToogleModal={setToogleModal} />
+      ) : null}
     </Container>
   );
 };
-
-export default App;

@@ -1,13 +1,11 @@
-import { Container } from '@material-ui/core';
 import React, { FC } from 'react';
-import { useStyles } from '../../hooks/useStyles';
-import { AddButton } from './AddButton';
+import { Container } from '@material-ui/core';
+
 import { Notes } from './Notes';
 
 export const ListOfNotes: FC = () => {
-  const classes = useStyles();
   return (
-    <Container className={classes.container} maxWidth="xs">
+    <Container maxWidth="xs">
       <Notes />
     </Container>
   );
