@@ -1,0 +1,13 @@
+logs
+*.log
+.DS_Store
+
+package-lock.json
+
+.idea
+.vscode
+
+.lock-wscript
+
+dist
+node_modules
