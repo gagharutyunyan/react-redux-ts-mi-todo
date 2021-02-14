@@ -40,6 +40,7 @@ export const MapOfChildNotes: FC<IMapOfChildNotes> = ({
     if (isDelete) {
       dispatch(DELETE_NOTE(id));
     }
+    console.log(isDelete);
     setToogleModal(false);
   };
 
@@ -53,9 +54,10 @@ export const MapOfChildNotes: FC<IMapOfChildNotes> = ({
         <Item>
           <Checkbox
             checked={checked}
-            onChange={() => checkNote(id)}
+            checkNote={() => checkNote(id)}
             openModal={() => openDeleteModal()}
             label={text}
+            id={id}
           />
           {children}
         </Item>

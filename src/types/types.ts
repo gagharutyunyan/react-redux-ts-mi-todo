@@ -28,8 +28,9 @@ export interface IModalAskingForm {
 export interface ICheckbox {
   checked: boolean;
   label: string;
-  onChange: () => void;
+  checkNote: (id: string) => void;
   openModal: () => void;
+  id: string;
 }
 
 export interface IDeleteIcon {

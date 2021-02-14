@@ -28,13 +28,13 @@ const Content = styled.div`
 
 export const ModalAskingForm: FC<IModalAskingForm> = ({ deleteNote, id }) => {
   return (
-    <Modal onClick={() => deleteNote('no', id)}>
+    <Modal onClick={() => deleteNote(false, id)}>
       <Content>
         Вы пожалейте, если удалите этот элемент, хотите ли вы этого?
         <br />
         <br />
         <Button
-          onClick={() => deleteNote('yes', id)}
+          onClick={() => deleteNote(true, id)}
           variant="contained"
           color="primary"
           startIcon={<DeleteIcon fontSize="small" />}
@@ -45,7 +45,7 @@ export const ModalAskingForm: FC<IModalAskingForm> = ({ deleteNote, id }) => {
         <Button
           variant="contained"
           color="secondary"
-          onClick={() => deleteNote('no', id)}
+          onClick={() => deleteNote(false, id)}
         >
           Нет, оставь
         </Button>

@@ -3,14 +3,14 @@ import { ICheckbox, TisChecked } from '../../types/types';
 import styled from 'styled-components';
 import { DeleteIcon } from '../Icons/DeleteIcon';
 
-const CheckboxContainer = styled.label`
+const CheckboxContainer = styled.div`
   display: flex;
   min-width: 350px;
   display: inline-block;
   vertical-align: middle;
 `;
 
-const HiddenCheckbox = styled.input.attrs({ type: 'checkbox' })`
+const HiddenCheckbox = styled.input`
   border: 0;
   clip: rect(0 0 0 0);
   clippath: inset(50%);
@@ -45,7 +45,7 @@ const StyledCheckbox = styled.div`
   }
 `;
 
-const Text = styled.span`
+const Label = styled.label`
   position: relative;
   margin-left: 8px;
   text-decoration: ${(props: TisChecked) =>
@@ -54,22 +54,28 @@ const Text = styled.span`
 
 export const Checkbox: FC<ICheckbox> = ({
   checked,
-  onChange,
   label,
+  checkNote,
   openModal,
+  id,
 }) => {
   return (
     <CheckboxContainer>
-      <HiddenCheckbox type="checkbox" checked={checked} onChange={onChange} />
-      <StyledCheckbox checked={checked}>
+      <HiddenCheckbox
+        id={id}
+        type="checkbox"
+        checked={checked}
+        onChange={() => checkNote(id)}
+      />
+      <StyledCheckbox checked={checked} onClick={() => checkNote(id)}>
         <Icon viewBox="0 0 24 24">
           <polyline points="20 6 9 17 4 12" />
         </Icon>
       </StyledCheckbox>
-      <Text checked={checked}>
+      <Label htmlFor={id} checked={checked}>
         {label}
         {checked ? <DeleteIcon openModal={openModal} /> : null}
-      </Text>
+      </Label>
     </CheckboxContainer>
   );
 };

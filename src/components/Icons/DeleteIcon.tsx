@@ -17,5 +17,12 @@ const StyledDeleteIcon = styled(DeleteForever)`
 `;
 
 export const DeleteIcon: FC<IDeleteIcon> = ({ openModal }) => {
-  return <StyledDeleteIcon onClick={() => openModal()} />;
+  return (
+    <StyledDeleteIcon
+      onClick={(e) => {
+        e.preventDefault();
+        openModal();
+      }}
+    />
+  );
 };

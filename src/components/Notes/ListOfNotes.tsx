@@ -1,13 +1,20 @@
 import React, { FC } from 'react';
-import { Container } from '@material-ui/core';
+import styled from 'styled-components';
 
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { MapOfChildNotes } from './MapOfChildNotes';
 
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const ListOfNotes: FC = React.memo(() => {
   const { notes } = useTypedSelector((state) => state.user);
   return (
-    <Container maxWidth="xs">
+    <Container>
       {notes.map((props) => {
         return (
           <MapOfChildNotes key={props.id} {...props}>
