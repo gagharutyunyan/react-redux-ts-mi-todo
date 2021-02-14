@@ -1,7 +1,5 @@
 import { ReactNode } from 'react';
 
-export type TisChecked = { isChecked: boolean };
-
 export interface Inote {
   text: string;
   id: string;
@@ -12,23 +10,33 @@ export interface IMapOfChildNotes extends Inote {
 }
 
 export interface Ichild extends Inote {
-  childs: IMapOfChildNotes[];
+  children: IMapOfChildNotes[];
 }
 
 export interface Inotes extends Inote {
-  childs: Ichild[];
+  children: Ichild[];
 }
 
 export interface IinitialState {
   notes: Inotes[];
-  toogleDeleteModal: boolean;
-  toogleAddModal: boolean;
 }
-
 export interface IModalAskingForm {
   deleteNote: (isDelete: boolean, id: string) => void;
   id: string;
 }
+
+export interface ICheckbox {
+  checked: boolean;
+  label: string;
+  onChange: () => void;
+  openModal: () => void;
+}
+
+export interface IDeleteIcon {
+  openModal: () => void;
+}
+
+export type TisChecked = { checked: boolean };
 
 export interface IOpenFormButton {
   setToogleModal: (param: boolean) => void;

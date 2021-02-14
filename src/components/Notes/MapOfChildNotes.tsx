@@ -1,15 +1,13 @@
 import React, { FC, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import Checkbox from '@material-ui/core/Checkbox';
-import DeleteIcon from '@material-ui/icons/Delete';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import styled from 'styled-components';
 
-import { useStyles } from '../../hooks/useStyles';
-import { TisChecked, IMapOfChildNotes } from '../../types/types';
+import { IMapOfChildNotes } from '../../types/types';
 import { ModalAskingForm } from './ModalAskingForm';
 import { CHECK_NOTE, DELETE_NOTE } from '../../store/actions/notesAction';
+
+import { Checkbox } from '../Utils/Checkbox';
 
 const Note = styled.ul`
   position: relative;
@@ -21,8 +19,8 @@ const Note = styled.ul`
 const Item = styled.li`
   position: relative;
   list-style-type: none;
-  text-decoration: ${(props: TisChecked) =>
-    props.isChecked ? 'line-through' : 'none'};
+  margin-left: 15px;
+  padding: 3px;
 `;
 
 export const MapOfChildNotes: FC<IMapOfChildNotes> = ({
@@ -31,7 +29,6 @@ export const MapOfChildNotes: FC<IMapOfChildNotes> = ({
   checked,
   children,
 }) => {
-  const classes = useStyles();
   const dispatch = useDispatch();
   const [toogleModal, setToogleModal] = useState(false);
 
@@ -53,26 +50,13 @@ export const MapOfChildNotes: FC<IMapOfChildNotes> = ({
   return (
     <>
       <Note>
-        <Item isChecked={checked}>
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={checked}
-                onChange={() => checkNote(id)}
-                color={'primary'}
-                inputProps={{
-                  'aria-label': 'secondary checkbox',
-                }}
-              />
-            }
+        <Item>
+          <Checkbox
+            checked={checked}
+            onChange={() => checkNote(id)}
+            openModal={() => openDeleteModal()}
             label={text}
           />
-          {checked ? (
-            <DeleteIcon
-              className={classes.deleteIcon}
-              onClick={() => openDeleteModal()}
-            />
-          ) : null}
           {children}
         </Item>
       </Note>

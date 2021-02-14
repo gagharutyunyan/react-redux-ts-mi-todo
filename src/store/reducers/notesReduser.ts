@@ -13,18 +13,18 @@ const initialState: IinitialState = {
       text: 'hey1',
       id: uid(16),
       checked: false,
-      childs: [
+      children: [
         {
           text: 'hey2',
           id: uid(16),
           checked: false,
-          childs: [{ text: 'hey3', id: uid(16), checked: true }],
+          children: [{ text: 'hey3', id: uid(16), checked: true }],
         },
         {
           text: 'hey2',
           id: uid(16),
           checked: false,
-          childs: [
+          children: [
             {
               text: 'hdasdasfasfsvdfdsgdsgreregey3',
               id: uid(16),
@@ -39,27 +39,25 @@ const initialState: IinitialState = {
       text: 'bro1',
       id: uid(16),
       checked: false,
-      childs: [
+      children: [
         {
           text: 'bro2',
           id: uid(16),
           checked: false,
-          childs: [{ text: 'bro3', id: uid(16), checked: false }],
+          children: [{ text: 'bro3', id: uid(16), checked: false }],
         },
       ],
     },
   ],
-  toogleDeleteModal: false,
-  toogleAddModal: false,
 };
 
 export const notesReduser = createReducer(initialState, {
   [CHECK_NOTE.type]: (state, { payload }: { payload: string }) => {
     state.notes.forEach((note) => {
       useCheckNote(note, payload);
-      note.childs.forEach((childNote) => {
+      note.children.forEach((childNote) => {
         useCheckNote(childNote, payload);
-        childNote.childs.forEach((nestedNote) => {
+        childNote.children.forEach((nestedNote) => {
           useCheckNote(nestedNote, payload);
         });
       });
@@ -68,10 +66,10 @@ export const notesReduser = createReducer(initialState, {
   [DELETE_NOTE.type]: (state, { payload }: { payload: string }) => {
     state.notes.forEach((note, index) => {
       useDeleteNote(state.notes, note.id, payload, index);
-      note.childs.forEach((childNote, index) => {
-        useDeleteNote(note.childs, childNote.id, payload, index);
-        childNote.childs.forEach((nestedChild, index) => {
-          useDeleteNote(childNote.childs, nestedChild.id, payload, index);
+      note.children.forEach((childNote, index) => {
+        useDeleteNote(note.children, childNote.id, payload, index);
+        childNote.children.forEach((nestedChild, index) => {
+          useDeleteNote(childNote.children, nestedChild.id, payload, index);
         });
       });
     });
@@ -98,7 +96,7 @@ export const notesReduser = createReducer(initialState, {
       const childNote = newNote.filter((note) => note.id !== payload);
       const nestedNote = childNote.filter((note) => note.id !== payload);
 
-      return { ...state };
+      return { ...state, notes: [...newNote] };
     }
     case ActionTypes.CHECK_NOTE: {
       const { payload } = action;
