@@ -31,7 +31,11 @@ const initialState: IinitialState = {
               id: uid(16),
               checked: true,
             },
-            { text: 'hey3', id: uid(16), checked: true },
+            {
+              text: ' Lorem ipsum dolor sit amet.',
+              id: uid(16),
+              checked: true,
+            },
           ],
         },
       ],
