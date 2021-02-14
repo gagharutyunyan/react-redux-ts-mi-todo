@@ -19,7 +19,7 @@ const initialState: IinitialState = {
           text: 'level 2',
           id: uid(16),
           checked: false,
-          children: [{ text: 'Level 3', id: uid(16), checked: true }],
+          children: [{ text: 'Level 3', id: uid(16), checked: false }],
         },
         {
           text: 'Test 2',
@@ -29,12 +29,12 @@ const initialState: IinitialState = {
             {
               text: 'Level 3',
               id: uid(16),
-              checked: true,
+              checked: false,
             },
             {
               text: ' Lorem ipsum dolor sit amet.',
               id: uid(16),
-              checked: true,
+              checked: false,
             },
           ],
         },
