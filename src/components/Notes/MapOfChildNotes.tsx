@@ -11,23 +11,25 @@ import { Checkbox } from '../Utils/Checkbox';
 
 const Note = styled.ul`
   position: relative;
-  display: flex;
   margin: 0;
-  padding-left: 18px;
+  padding: 0;
 `;
 
 const Item = styled.li`
   position: relative;
   list-style-type: none;
-  margin-left: 15px;
-  padding: 3px;
+  margin: 0;
+  padding: 0;
+  padding: 5px 0 3px 40px;
+  font-size: 18px;
+  transition: 0.2s;
 `;
 
 export const MapOfChildNotes: FC<IMapOfChildNotes> = ({
+  children,
   text,
   id,
   checked,
-  children,
 }) => {
   const dispatch = useDispatch();
   const [toogleModal, setToogleModal] = useState(false);

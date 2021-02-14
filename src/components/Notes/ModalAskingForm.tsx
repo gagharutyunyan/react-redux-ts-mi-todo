@@ -6,6 +6,9 @@ import DeleteIcon from '@material-ui/icons/Delete';
 
 const Modal = styled.div`
   position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.9);
@@ -22,8 +25,7 @@ const Content = styled.div`
   flex-direction: column;
   font-size: 28px;
   color: #fff;
-  margin-top: 100px;
-  margin-right: 100px;
+  margin-top: -200px;
 `;
 
 export const ModalAskingForm: FC<IModalAskingForm> = ({ deleteNote, id }) => {

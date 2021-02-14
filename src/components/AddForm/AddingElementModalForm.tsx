@@ -1,21 +1,16 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import styled from 'styled-components';
-import { createStyles, makeStyles } from '@material-ui/core/styles';
-import CancelIcon from '@material-ui/icons/Cancel';
+import { WindowClose } from '@styled-icons/boxicons-regular/WindowClose';
+import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 
-import { IOpenFormButton } from '../../types/types';
-import { SelectNoteToAdd } from './SelectNoteToAdd';
-
-const useStyles = makeStyles(() =>
-  createStyles({
-    root: {
-      position: 'absolute',
-      right: 8,
-      top: 8,
-      cursor: 'pointer',
-    },
-  })
-);
+import { IFormOpenButton, IInputFields } from '../../types/types';
+import { SelectNote } from './SelectNote';
+import { AddButton } from '../Utils/AddButton';
+import { Form } from '../AddForm/Form';
+import { ADD_NOTE } from '../../store/actions/notesAction';
 
 const Modal = styled.div`
   position: fixed;
@@ -36,7 +31,7 @@ const Content = styled.div`
   display: flex;
   justify-content: center;
   width: 50vw;
-  height: 50vh;
+  height: 40vh;
   min-width: 480px;
   min-height: 300px;
   background: #fff;
@@ -45,23 +40,91 @@ const Content = styled.div`
   z-index: 100;
 `;
 
-export const AddingElementModalForm: FC<IOpenFormButton> = ({
+const Selection = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+`;
+
+const ErrorLabel = styled.label`
+  position: absolute;
+  top: -45px;
+  right: 32%;
+  color: red;
+`;
+
+const InputText = styled.input`
+  font-size: 18px;
+  padding: 10px;
+  margin: 10px;
+  background: papayawhip;
+  border: none;
+  border-radius: 3px;
+  ::placeholder {
+    color: palevioletred;
+  }
+`;
+
+const CloseButton = styled(WindowClose)`
+  position: absolute;
+  top: 5px;
+  right: 8px;
+  width: 50px;
+  height: 50px;
+  color: palevioletred;
+  cursor: pointer;
+  &: hover {
+    color: red;
+  }
+`;
+
+const schema = yup.object().shape({
+  noteText: yup.string().min(4, 'Your note min length must be 4'),
+});
+
+export const AddingElementModalForm: FC<IFormOpenButton> = ({
   setToogleModal,
 }) => {
-  const classes = useStyles();
+  const dispatch = useDispatch();
+  const { register, handleSubmit, errors, formState } = useForm<IInputFields>({
+    mode: 'onChange',
+    resolver: yupResolver(schema),
+  });
+  const [inputText, setInputText] = useState('');
+  const [selectNote, setSelectNote] = useState('');
+
+  const addNote = () => {
+    dispatch(ADD_NOTE({ id: selectNote, text: inputText }));
+    setToogleModal(false);
+    console.log(selectNote);
+  };
+
   return (
     <Modal>
       <Content>
-        <CancelIcon
-          className={classes.root}
-          fontSize="large"
-          color="primary"
-          onClick={() => setToogleModal(false)}
-        />
-        <form>
-          Select categorie
-          <SelectNoteToAdd />
-        </form>
+        <CloseButton onClick={() => setToogleModal(false)} />
+        <Form onSubmit={handleSubmit(addNote)}>
+          <Selection>
+            <SelectNote setSelectNote={setSelectNote} />
+            <InputText
+              type="text"
+              name="noteText"
+              id="noteText"
+              placeholder="type something"
+              onChange={(e) => setInputText(e.target.value)}
+              ref={register}
+              maxLength={30}
+            />
+            <ErrorLabel htmlFor="noteText">
+              {errors?.noteText && <p>{errors.noteText.message}</p>}
+            </ErrorLabel>
+          </Selection>
+
+          <AddButton handler={() => addNote()} disabled={!formState.isValid}>
+            Add my new note
+          </AddButton>
+        </Form>
       </Content>
     </Modal>
   );

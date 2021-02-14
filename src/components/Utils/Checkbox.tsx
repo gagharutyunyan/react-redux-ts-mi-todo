@@ -27,12 +27,13 @@ const Icon = styled.svg`
   fill: none;
   stroke: white;
   stroke-width: 2px;
+  cursor: pointer;
 `;
 
 const StyledCheckbox = styled.div`
   display: inline-block;
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
   background: ${(props: TisChecked) =>
     props.checked ? 'salmon' : 'papayawhip'};
   border-radius: 3px;
@@ -43,13 +44,16 @@ const StyledCheckbox = styled.div`
   ${Icon} {
     visibility: ${(props) => (props.checked ? 'visible' : 'hidden')};
   }
+  cursor: pointer;
 `;
 
 const Label = styled.label`
   position: relative;
   margin-left: 8px;
+  font-size: 24px;
   text-decoration: ${(props: TisChecked) =>
     props.checked ? 'line-through' : 'none'};
+  cursor: pointer;
 `;
 
 export const Checkbox: FC<ICheckbox> = ({

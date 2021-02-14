@@ -3,30 +3,31 @@ import { uid } from 'uid';
 
 import { useCheckNote } from '../../hooks/useCheckNote';
 import { useDeleteNote } from '../../hooks/useDeleteNote';
-import { Inotes, IinitialState } from '../../types/types';
+import { IinitialState, IAddNote } from '../../types/types';
 
 import { CHECK_NOTE, DELETE_NOTE, ADD_NOTE } from '../actions/notesAction';
 
 const initialState: IinitialState = {
   notes: [
     {
-      text: 'hey1',
+      text: 'Level 1',
       id: uid(16),
       checked: false,
+
       children: [
         {
-          text: 'hey2',
+          text: 'level 2',
           id: uid(16),
           checked: false,
-          children: [{ text: 'hey3', id: uid(16), checked: true }],
+          children: [{ text: 'Level 3', id: uid(16), checked: true }],
         },
         {
-          text: 'hey2',
+          text: 'Test 2',
           id: uid(16),
           checked: false,
           children: [
             {
-              text: 'hdasdasfasfsvdfdsgdsgreregey3',
+              text: 'Level 3',
               id: uid(16),
               checked: true,
             },
@@ -36,15 +37,15 @@ const initialState: IinitialState = {
       ],
     },
     {
-      text: 'bro1',
+      text: 'Test №1036 :)',
       id: uid(16),
       checked: false,
       children: [
         {
-          text: 'bro2',
+          text: 'children',
           id: uid(16),
           checked: false,
-          children: [{ text: 'bro3', id: uid(16), checked: false }],
+          children: [{ text: 'grandchildren', id: uid(16), checked: false }],
         },
       ],
     },
@@ -54,11 +55,11 @@ const initialState: IinitialState = {
 export const notesReduser = createReducer(initialState, {
   [CHECK_NOTE.type]: (state, { payload }: { payload: string }) => {
     state.notes.forEach((note) => {
-      useCheckNote(note, payload);
+      useCheckNote(false, note, payload);
       note.children.forEach((childNote) => {
-        useCheckNote(childNote, payload);
+        useCheckNote(note.checked, childNote, payload);
         childNote.children.forEach((nestedNote) => {
-          useCheckNote(nestedNote, payload);
+          useCheckNote(childNote.checked, nestedNote, payload);
         });
       });
     });
@@ -74,9 +75,27 @@ export const notesReduser = createReducer(initialState, {
       });
     });
   },
-  [ADD_NOTE.type]: (state, { payload }: { payload: Inotes }) => {
-    console.log('push');
-    state.notes.push(payload);
+  [ADD_NOTE.type]: (state, { payload }: { payload: IAddNote }) => {
+    const schema = {
+      text: payload.text,
+      id: uid(16),
+      checked: false,
+      children: [],
+    };
+    if (!payload.id) {
+      return { ...state, notes: [...state.notes, schema] };
+    }
+    state.notes.forEach((note) => {
+      if (note.id === payload.id) {
+        note.children.push(schema);
+      } else {
+        note.children.forEach((childNote) => {
+          if (childNote.id === payload.id) {
+            childNote.children.push(schema);
+          }
+        });
+      }
+    });
   },
 });
 

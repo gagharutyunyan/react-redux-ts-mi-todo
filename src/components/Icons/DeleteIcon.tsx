@@ -6,10 +6,11 @@ import { IDeleteIcon } from '../../types/types';
 
 const StyledDeleteIcon = styled(DeleteForever)`
   position: absolute;
-  top: -7px;
-  right: -32px;
-  width: 32px;
-  height: 32px;
+  top: -5px;
+  right: -36px;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
   cursor: pointer;
   &:hover {
     color: red;

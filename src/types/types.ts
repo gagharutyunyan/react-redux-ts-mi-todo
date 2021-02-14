@@ -28,9 +28,9 @@ export interface IModalAskingForm {
 export interface ICheckbox {
   checked: boolean;
   label: string;
+  id: string;
   checkNote: (id: string) => void;
   openModal: () => void;
-  id: string;
 }
 
 export interface IDeleteIcon {
@@ -39,6 +39,27 @@ export interface IDeleteIcon {
 
 export type TisChecked = { checked: boolean };
 
-export interface IOpenFormButton {
+export interface IFormOpenButton {
   setToogleModal: (param: boolean) => void;
+}
+
+export interface IAddButton {
+  handler: () => void;
+  disabled?: boolean;
+}
+
+export interface IAddNote {
+  id: string;
+  text: string;
+}
+export interface ISelectNote {
+  setSelectNote: (id: string) => void;
+}
+
+export interface IForm {
+  onSubmit: () => void;
+}
+
+export interface IInputFields {
+  noteText: string;
 }

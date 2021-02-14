@@ -2,12 +2,14 @@ import React, { FC, useState } from 'react';
 import styled from 'styled-components';
 
 import { AddingElementModalForm } from './components/AddForm/AddingElementModalForm';
-import { OpenFormButton } from './components/AddForm/OpenFormButton';
+import { FormOpenButton } from './components/AddForm/FormOpenButton';
 import { ListOfNotes } from './components/Notes/ListOfNotes';
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
+  margin-top: 80px;
 `;
 
 export const App: FC = () => {
@@ -16,7 +18,7 @@ export const App: FC = () => {
   return (
     <Container>
       <ListOfNotes />
-      <OpenFormButton setToogleModal={setToogleModal} />
+      <FormOpenButton setToogleModal={setToogleModal} />
       {toogleModal ? (
         <AddingElementModalForm setToogleModal={setToogleModal} />
       ) : null}
