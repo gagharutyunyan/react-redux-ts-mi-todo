@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import { Button } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 
+import { useMediaQuery } from '../../hooks/useMediaQuery';
+
 const Modal = styled.div`
   position: fixed;
   display: flex;
@@ -26,13 +28,30 @@ const Content = styled.div`
   font-size: 28px;
   color: #fff;
   margin-top: -200px;
+
+  ${useMediaQuery.md`
+  max-width: 700px;
+  font-size: 26px;
+  `}
+
+  ${useMediaQuery.sm`
+  max-width: 420px;
+  font-size: 22px;
+  margin-top: -150px;
+  
+  `}
+
+  ${useMediaQuery.xs`
+    font-size: 18px;
+    margin-top: -100px;
+  `}
 `;
 
 export const ModalAskingForm: FC<IModalAskingForm> = ({ deleteNote, id }) => {
   return (
     <Modal onClick={() => deleteNote(false, id)}>
       <Content>
-        Вы пожалейте, если удалите этот элемент, хотите ли вы этого?
+        Удаляю этот элемент, хотите ли вы этого?
         <br />
         <br />
         <Button

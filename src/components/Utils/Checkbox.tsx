@@ -46,11 +46,6 @@ const StyledCheckbox = styled.div`
     visibility: ${(props) => (props.checked ? 'visible' : 'hidden')};
   }
   cursor: pointer;
-
-  ${useMediaQuery.sm`
-  width: 16px;
-  height: 16px;
-  `}
 `;
 
 const Label = styled.label`
