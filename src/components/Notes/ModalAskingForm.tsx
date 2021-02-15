@@ -30,14 +30,14 @@ const Content = styled.div`
   margin-top: -200px;
 
   ${useMediaQuery.md`
-  max-width: 700px;
-  font-size: 26px;
+    max-width: 700px;
+    font-size: 26px;
   `}
 
   ${useMediaQuery.sm`
-  max-width: 420px;
-  font-size: 22px;
-  margin-top: -150px;
+    max-width: 420px;
+    font-size: 22px;
+    margin-top: -130px;
   
   `}
 
@@ -51,7 +51,7 @@ export const ModalAskingForm: FC<IModalAskingForm> = ({ deleteNote, id }) => {
   return (
     <Modal onClick={() => deleteNote(false, id)}>
       <Content>
-        Удаляю этот элемент, хотите ли вы этого?
+        Удаляю этот элемент, хотите этого?
         <br />
         <br />
         <Button
