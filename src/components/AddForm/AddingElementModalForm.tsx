@@ -131,7 +131,7 @@ export const AddingElementModalForm: FC<IFormOpenButton> = ({
               placeholder="type something"
               onChange={(e) => setInputText(e.target.value)}
               ref={register}
-              maxLength={30}
+              maxLength={25}
             />
             <ErrorLabel htmlFor="noteText">
               {errors?.noteText && <p>{errors.noteText.message}</p>}
