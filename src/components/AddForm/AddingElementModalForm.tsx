@@ -49,7 +49,6 @@ const Selection = styled.div`
   ${useMediaQuery.md`
   flex-direction: column;
   align-items: center;  
-  margin-bottom: 20px;
   `};
 `;
 
@@ -59,17 +58,10 @@ const ErrorLabel = styled.label`
   right: 32%;
   color: red;
   ${useMediaQuery.md`
+  position:static ;
     flex-direction: column;
     align-items: center;  
-    margin-bottom: 20px;
-    top: inherit;
-    bottom: -57px;
-    right: 28%;
-  `};
-
-  ${useMediaQuery.sm`
-    bottom: -57px;
-    right: 22%;
+  
   `};
 `;
 
