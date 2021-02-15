@@ -5,6 +5,7 @@ import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { useNormaliseNoteObject } from '../../hooks/useNormaliseNoteObject';
 
 import { IMapOfChildNotes, ISelectNote } from '../../types/types';
+import { useMediaQuery } from '../../hooks/useMediaQuery';
 
 const Select = styled.select`
   top: 30px;
@@ -20,6 +21,12 @@ const Select = styled.select`
   background: white;
   color: palevioletred;
   border: 2px solid palevioletred;
+  ${useMediaQuery.md`
+  width: 64%;
+  `}
+  ${useMediaQuery.sm`
+  width: 76%;
+  `}
 `;
 
 const Option = styled.option`

@@ -11,6 +11,7 @@ import { SelectNote } from './SelectNote';
 import { AddButton } from '../Utils/AddButton';
 import { Form } from '../AddForm/Form';
 import { ADD_NOTE } from '../../store/actions/notesAction';
+import { useMediaQuery } from '../../hooks/useMediaQuery';
 
 const Modal = styled.div`
   position: fixed;
@@ -32,7 +33,7 @@ const Content = styled.div`
   justify-content: center;
   width: 50vw;
   height: 40vh;
-  min-width: 480px;
+  min-width: 320px;
   min-height: 300px;
   background: #fff;
   background-size: cover;
@@ -45,6 +46,11 @@ const Selection = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 30px;
+  ${useMediaQuery.md`
+  flex-direction: column;
+  align-items: center;  
+  margin-bottom: 20px;
+  `};
 `;
 
 const ErrorLabel = styled.label`
@@ -52,6 +58,19 @@ const ErrorLabel = styled.label`
   top: -45px;
   right: 32%;
   color: red;
+  ${useMediaQuery.md`
+    flex-direction: column;
+    align-items: center;  
+    margin-bottom: 20px;
+    top: inherit;
+    bottom: -57px;
+    right: 28%;
+  `};
+
+  ${useMediaQuery.sm`
+    bottom: -57px;
+    right: 22%;
+  `};
 `;
 
 const InputText = styled.input`
@@ -64,6 +83,12 @@ const InputText = styled.input`
   ::placeholder {
     color: palevioletred;
   }
+  ${useMediaQuery.md`
+  width: 60%;
+  `}
+  ${useMediaQuery.sm`
+  width: 70%;
+  `}
 `;
 
 const CloseButton = styled(WindowClose)`
@@ -86,18 +111,18 @@ const schema = yup.object().shape({
 export const AddingElementModalForm: FC<IFormOpenButton> = ({
   setToogleModal,
 }) => {
-  const dispatch = useDispatch();
   const { register, handleSubmit, errors, formState } = useForm<IInputFields>({
     mode: 'onChange',
     resolver: yupResolver(schema),
   });
+
+  const dispatch = useDispatch();
   const [inputText, setInputText] = useState('');
   const [selectNote, setSelectNote] = useState('');
 
   const addNote = () => {
     dispatch(ADD_NOTE({ id: selectNote, text: inputText }));
     setToogleModal(false);
-    console.log(selectNote);
   };
 
   return (

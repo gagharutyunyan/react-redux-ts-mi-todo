@@ -6,8 +6,8 @@ import styled from 'styled-components';
 import { IMapOfChildNotes } from '../../types/types';
 import { ModalAskingForm } from './ModalAskingForm';
 import { CHECK_NOTE, DELETE_NOTE } from '../../store/actions/notesAction';
-
 import { Checkbox } from '../Utils/Checkbox';
+import { useMediaQuery } from '../../hooks/useMediaQuery';
 
 const Note = styled.ul`
   position: relative;
@@ -23,6 +23,14 @@ const Item = styled.li`
   padding: 5px 0 3px 40px;
   font-size: 18px;
   transition: 0.2s;
+
+  ${useMediaQuery.sm`
+  padding-left: 27px;
+  `}
+
+  ${useMediaQuery.xs`
+  padding-left: 16px;
+  `}
 `;
 
 export const MapOfChildNotes: FC<IMapOfChildNotes> = ({

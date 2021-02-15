@@ -1,11 +1,12 @@
 import React, { FC } from 'react';
-import { ICheckbox, TisChecked } from '../../types/types';
 import styled from 'styled-components';
+
+import { useMediaQuery } from '../../hooks/useMediaQuery';
+import { ICheckbox, TisChecked } from '../../types/types';
 import { DeleteIcon } from '../Icons/DeleteIcon';
 
 const CheckboxContainer = styled.div`
   display: flex;
-  min-width: 350px;
   display: inline-block;
   vertical-align: middle;
 `;
@@ -45,6 +46,11 @@ const StyledCheckbox = styled.div`
     visibility: ${(props) => (props.checked ? 'visible' : 'hidden')};
   }
   cursor: pointer;
+
+  ${useMediaQuery.sm`
+  width: 16px;
+  height: 16px;
+  `}
 `;
 
 const Label = styled.label`
@@ -54,6 +60,14 @@ const Label = styled.label`
   text-decoration: ${(props: TisChecked) =>
     props.checked ? 'line-through' : 'none'};
   cursor: pointer;
+
+  ${useMediaQuery.sm`
+  font-size: 19px;
+  `}
+
+  ${useMediaQuery.xs`
+    font-size: 16px;
+  `}
 `;
 
 export const Checkbox: FC<ICheckbox> = ({
