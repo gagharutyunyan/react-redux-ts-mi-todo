@@ -40,7 +40,7 @@ export const MapOfChildNotes: FC<IMapOfChildNotes> = ({
   checked,
 }) => {
   const dispatch = useDispatch();
-  const [toogleModal, setToogleModal] = useState(false);
+  const [toggleModal, setToggleModal] = useState(false);
 
   const checkNote = (id: string) => {
     dispatch(CHECK_NOTE(id));
@@ -50,7 +50,7 @@ export const MapOfChildNotes: FC<IMapOfChildNotes> = ({
     if (isDelete) {
       dispatch(DELETE_NOTE(id));
     }
-    setToogleModal(false);
+    setToggleModal(false);
   };
 
   return (
@@ -60,14 +60,14 @@ export const MapOfChildNotes: FC<IMapOfChildNotes> = ({
           <Checkbox
             checked={checked}
             checkNote={() => checkNote(id)}
-            openModal={() => setToogleModal(true)}
+            openModal={() => setToggleModal(true)}
             label={text}
             id={id}
           />
           {children}
         </Item>
       </Note>
-      {toogleModal && <ModalAskingForm deleteNote={deleteNote} id={id} />}
+      {toggleModal && <ModalAskingForm deleteNote={deleteNote} id={id} />}
     </>
   );
 };

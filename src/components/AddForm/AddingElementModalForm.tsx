@@ -91,7 +91,7 @@ const CloseButton = styled(WindowClose)`
   height: 50px;
   color: palevioletred;
   cursor: pointer;
-  &: hover {
+  &:hover {
     color: red;
   }
 `;
@@ -101,7 +101,7 @@ const schema = yup.object().shape({
 });
 
 export const AddingElementModalForm: FC<IFormOpenButton> = ({
-  setToogleModal,
+  setToggleModal,
 }) => {
   const { register, handleSubmit, errors, formState } = useForm<IInputFields>({
     mode: 'onChange',
@@ -114,13 +114,13 @@ export const AddingElementModalForm: FC<IFormOpenButton> = ({
 
   const addNote = () => {
     dispatch(ADD_NOTE({ id: selectNote, text: inputText }));
-    setToogleModal(false);
+    setToggleModal(false);
   };
 
   return (
     <Modal>
       <Content>
-        <CloseButton onClick={() => setToogleModal(false)} />
+        <CloseButton onClick={() => setToggleModal(false)} />
         <Form onSubmit={handleSubmit(addNote)}>
           <Selection>
             <SelectNote setSelectNote={setSelectNote} />

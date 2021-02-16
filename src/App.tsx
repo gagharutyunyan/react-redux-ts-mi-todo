@@ -23,14 +23,14 @@ const Container = styled.div`
 `;
 
 export const App: FC = () => {
-  const [toogleModal, setToogleModal] = useState<boolean>(false);
+  const [toggleModal, setToggleModal] = useState<boolean>(false);
 
   return (
     <Container>
       <ListOfNotes />
-      <FormOpenButton setToogleModal={setToogleModal} />
-      {toogleModal && (
-        <AddingElementModalForm setToogleModal={setToogleModal} />
+      <FormOpenButton setToggleModal={setToggleModal} />
+      {toggleModal && (
+        <AddingElementModalForm setToggleModal={setToggleModal} />
       )}
     </Container>
   );

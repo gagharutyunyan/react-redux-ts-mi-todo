@@ -40,7 +40,7 @@ export interface IDeleteIcon {
 export type TisChecked = { checked: boolean };
 
 export interface IFormOpenButton {
-  setToogleModal: (param: boolean) => void;
+  setToggleModal: (param: boolean) => void;
 }
 
 export interface IAddButton {
