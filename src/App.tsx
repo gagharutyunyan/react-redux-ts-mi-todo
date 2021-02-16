@@ -29,9 +29,9 @@ export const App: FC = () => {
     <Container>
       <ListOfNotes />
       <FormOpenButton setToogleModal={setToogleModal} />
-      {toogleModal ? (
+      {toogleModal && (
         <AddingElementModalForm setToogleModal={setToogleModal} />
-      ) : null}
+      )}
     </Container>
   );
 };

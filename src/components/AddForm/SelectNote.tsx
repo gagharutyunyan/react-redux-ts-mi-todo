@@ -50,7 +50,7 @@ export const SelectNote: FC<ISelectNote> = ({ setSelectNote }) => {
       {arrayAllOfNotes.map(({ text, id, checked }) => {
         return (
           <Option key={id} value={id} disabled={checked}>
-            {text} {checked ? 'Выполнен' : null}
+            {text} {checked && 'Выполнен'}
           </Option>
         );
       })}

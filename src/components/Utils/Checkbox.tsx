@@ -87,7 +87,7 @@ export const Checkbox: FC<ICheckbox> = ({
       </StyledCheckbox>
       <Label htmlFor={id} checked={checked}>
         {label}
-        {checked ? <DeleteIcon openModal={openModal} /> : null}
+        {checked && <DeleteIcon openModal={openModal} />}
       </Label>
     </CheckboxContainer>
   );

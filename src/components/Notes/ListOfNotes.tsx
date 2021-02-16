@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
-
 import { useTypedSelector } from '../../hooks/useTypedSelector';
+
 import { MapOfChildNotes } from './MapOfChildNotes';
 
 const Container = styled.div`

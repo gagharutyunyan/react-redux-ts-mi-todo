@@ -67,7 +67,7 @@ export const MapOfChildNotes: FC<IMapOfChildNotes> = ({
           {children}
         </Item>
       </Note>
-      {toogleModal ? <ModalAskingForm deleteNote={deleteNote} id={id} /> : null}
+      {toogleModal && <ModalAskingForm deleteNote={deleteNote} id={id} />}
     </>
   );
 };
